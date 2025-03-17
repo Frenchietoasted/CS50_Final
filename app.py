@@ -1,7 +1,11 @@
-from flask import Flask
+from flask import Flask,render_template
 
 app = Flask(__name__)
 
 @app.route('/')
 def hello_world():
-    return '<p><center><h1>Hello, World!</h1></center></p>'
+    return render_template('layout.html')
+
+@app.route('/search', methods=['GET', 'POST'])    
+def search():
+    return render_template('search.html')
