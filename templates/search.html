@@ -1,0 +1,61 @@
+{% extends "layout.html" %}
+{% block title %}Search{% endblock %}
+{% block main %}
+    <h1>Search Results:</h1>
+    <div class="container" style="left:30px">
+        <h2 style="text-align: left;">NEWS:</h2>
+        
+        <div class="row row-cols-1 row-cols-md-2 g-4">
+        {% if news %}       
+            {% for article in news %}
+                <div class="col">
+                    <div class="card">
+                        <img src="{{ article.urlToImage }}" alt="{{ article.title }}" class="card-img-top">
+                        <a href="{{ article.url }}">{{ article.title }}</a>
+                        <p>{{ article.description }}</p>
+                    </div>
+                </div>    
+            
+            {% endfor %}
+        {% else %}
+            <p>No news found</p>
+        {% endif %}
+        
+        </div>
+        <div class="container" style="left:30px ;top: 30px;">
+        <h2 style="text-align: left;">REDDIT:</h2>
+        {% if redtitles!=[] %}
+            {% for j in range(i)%}
+                <div class="col">
+                    <div class="card" style="width: 25rem;">
+                        <a href="/{{redurls[j]}}">{{ redtitles[j] }}</a>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>No Reddit posts Found</p>
+        {% endif %}
+        </div>
+    </div>
+    <h2>News Sentiment:</h2>
+    <h1>
+    {% if newsscore>0 %}
+        <p style="color: green;">Bullish</p>
+    {% elif newsscore==0 %}
+        <p style="color: yellow;">Neutral</p>
+    {% else %}
+        <p style="color: red;">Bearish</p>
+    {% endif %}
+    </h1>
+    
+    <h2>Reddit Sentiment:</h2>
+    <h1>
+    {% if redscore>0 %}
+        <p style="color: green;">Bullish</p>
+    {% elif redscore==0 %}  
+        <p style="color: yellow;">Neutral</p>    
+    {% else %}
+        <p style="color: red;">Bearish</p>
+    {% endif %}
+    </h1>
+{% endblock %}
