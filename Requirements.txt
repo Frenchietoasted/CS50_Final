@@ -2,4 +2,7 @@ Flask
 Html
 Css
 Python
-postgresql
+sqlite3
+ntlk
+praw
+newsapi
